@@ -1,4 +1,4 @@
-#pragma warning disable CA1416
+﻿#pragma warning disable CA1416
 
 using System;
 using System.Collections.Generic;
@@ -10,6 +10,11 @@ using Eco.Gameplay.Skills;
 using Eco.Mods.TechTree;
 using Eco.Shared.Localization;
 using Eco.Shared.Serialization;
+
+
+using Eco.Core.Items;
+using Eco.Shared.Items;
+
 
 namespace Whetstone
 {
@@ -80,7 +85,7 @@ namespace Whetstone
             return tool.RepairTag != null && tool.RepairTag == RepairTag;
         }
 
-        private static bool NeedRepair(DurabilityItem item)
+        private static bool NeedRepair(RepairableItem item)
         {
             return item.Durability < 100;
         }
@@ -134,7 +139,7 @@ namespace Whetstone
     [RequiresSkill(typeof(BasicEngineeringSkill), 0)]
     public class WoodWhetstoneRecipe : RecipeFamily
     {
-        public static int InferRepairCostBase(DurabilityItem item)
+        public static int InferRepairCostBase(RepairableItem item)
         {
             return (int) Math.Ceiling(item.FullRepairAmount * 0.2);
         }
